@@ -1,0 +1,296 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Author: Shreya Kuthiala, March 2023</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-08-29"><meta name="DC.source" content="kuthialashreyaHW10B.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Author: Shreya Kuthiala, March 2023</h1><!--introduction--><p>This proram will conduct a short survey where the subject will choose the color they like best.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">GENERAL SETUP</a></li><li><a href="#2">COLOR SELECTION</a></li><li><a href="#3">SAVE &amp; EXIT</a></li></ul></div><h2 id="1">GENERAL SETUP</h2><pre class="codeinput">clear <span class="string">all</span>;                      <span class="comment">%clear variables in other settings</span>
+clc;                            <span class="comment">%clear command window</span>
+rng <span class="string">shuffle</span>                     <span class="comment">%seed rng using current time</span>
+close <span class="string">all</span>;                      <span class="comment">%close figure windows</span>
+sca;                            <span class="comment">%close PsychToolbox windowsSkip intro/debug and start screen setup</span>
+Screen(<span class="string">'Preference'</span>, <span class="string">'ConserveVRAM'</span>, 8192) ;
+PsychDebugWindowConfiguration
+Screen(<span class="string">'Preference'</span>,<span class="string">'VisualDebugLevel'</span>,1);      <span class="comment">%suppress PsychToolbox Welcome screen</span>
+Screen(<span class="string">'Preference'</span>,<span class="string">'SkipSyncTests'</span>,1);         <span class="comment">%Skip sync testing that causes error</span>
+PsychDefaultSetup(1);                           <span class="comment">%Use 0-to-255 coding for colors (OK if you use 0-to-1)</span>
+allScreenNums = Screen(<span class="string">'Screens'</span>);              <span class="comment">%Vector of screen numbers for available monitors</span>
+mainScreenNum = max(allScreenNums);             <span class="comment">%Screen number of the "main" monitor</span>
+
+backgroundColor = [0 0 0];                      <span class="comment">% background color is black</span>
+w = PsychImaging(<span class="string">'OpenWindow'</span>, mainScreenNum, backgroundColor);       <span class="comment">%open a full-screen window</span>
+Screen(<span class="string">'BlendFunction'</span>,w,<span class="string">'GL_SRC_ALPHA'</span>,<span class="string">'GL_ONE_MINUS_SRC_ALPHA'</span>);  <span class="comment">%Make drawing smoother (anti-aliasing)</span>
+
+[wWidth, wHeight] = Screen(<span class="string">'WindowSize'</span>, w) ;   <span class="comment">% width and height of screen in pixels</span>
+xmid       = round(wWidth  / 2);                <span class="comment">% horizontal midpoint of screen in pixels</span>
+ymid       = round(wHeight / 2);                <span class="comment">% vertical   midpoint of screen in pixels</span>
+
+<span class="comment">%Text setup</span>
+Screen(<span class="string">'TextFont'</span>,w,<span class="string">'Arial'</span>);                       <span class="comment">% Set text font</span>
+smallText = round(wHeight/30);                      <span class="comment">% smaller text size for prompts</span>
+Screen(<span class="string">'TextSize'</span>,w,smallText);                     <span class="comment">% set text size to 1/30 screen height</span>
+textColor = [0 255 255];                            <span class="comment">% cyan as  text color</span>
+
+<span class="comment">% Keyboard Setup</span>
+KbName(<span class="string">'UnifyKeyNames'</span>)                             <span class="comment">% use OSX key-name system</span>
+Screen(<span class="string">'TextBounds'</span>,w,<span class="string">' '</span>);                         <span class="comment">% This should get rid of issues w/ aliasing in GetEchoString</span>
+
+keyNumG = min(KbName(<span class="string">'g'</span>));
+keyNumJ = min(KbName(<span class="string">'j'</span>));
+
+ListenChar(2) ; <span class="comment">% suppress keyboard output to Matlab window</span>
+
+<span class="comment">% PRIME PSYCHTOOLBOX FUNCTIONS</span>
+WaitSecs(0);
+DrawFormattedText(w, <span class="string">''</span>);
+GetMouse;
+SetMouse(0, 0);
+HideCursor
+ShowCursor;
+IsInRect(0, 0, [0 0 0 0]);
+Screen(<span class="string">'FillOval'</span>, w);
+Screen(<span class="string">'FrameOval'</span>, w);
+Screen(<span class="string">'FillRect'</span>, w, backgroundColor);
+Screen(<span class="string">'Flip'</span>, w);
+[anyKeyDown, keySecs, keyCode] = KbCheck(-1) ; <span class="comment">% check key statuses</span>
+</pre><pre class="codeoutput error">Unrecognized function or variable 'sca'.
+
+Error in kuthialashreyaHW10B (line 10)
+sca;                            %close PsychToolbox windowsSkip intro/debug and start screen setup
+</pre><h2 id="2">COLOR SELECTION</h2><pre class="codeinput"><span class="keyword">while</span> ~KbCheck(-1) <span class="comment">% wait for any key to be down</span>
+    DrawFormattedText(w, <span class="string">'Press any key to begin color selection'</span>, <span class="string">'center'</span>, <span class="string">'center'</span>, textColor)  <span class="comment">% draw text</span>
+    Screen(<span class="string">'Flip'</span>, w);  <span class="comment">% put text on screen</span>
+<span class="keyword">end</span>
+
+<span class="comment">% create rects for circles using linspace</span>
+rectWidth = linspace(0, wWidth, 33); <span class="comment">% divides screen width into 33 equal parts</span>
+circle1 = [0 ymid-(wWidth/16) rectWidth(5) ymid+(wWidth/16)]; <span class="comment">%defines rect for circle 1</span>
+circle2 = [rectWidth(8) ymid-(wWidth/16) rectWidth(12) ymid+(wWidth/16)];<span class="comment">%defines rect for circle 2</span>
+circle3 = [rectWidth(15) ymid-(wWidth/16) rectWidth(19) ymid+(wWidth/16)]; <span class="comment">%defines rect for circle 3</span>
+circle4 = [rectWidth(22) ymid-(wWidth/16) rectWidth(26) ymid+(wWidth/16)]; <span class="comment">%defines rect for circle 4</span>
+circle5 = [rectWidth(29) ymid-(wWidth/16) wWidth ymid+(wWidth/16)]; <span class="comment">%defines rect for circle 5</span>
+circleRects = [circle1 ; circle2 ; circle3 ; circle4 ; circle5]; <span class="comment">% matrix of circle rects</span>
+xCenter = [rectWidth(2) rectWidth(9) rectWidth(16) rectWidth(23) rectWidth(30)]; <span class="comment">% creates matrix of center of circles</span>
+
+mouseButtons = [0 0 0]; <span class="comment">% initialize mouse buttons to 0</span>
+<span class="keyword">while</span> sum(mouseButtons) == 0 <span class="comment">% while nothing has been clicked</span>
+    [mouseX, mouseY, mouseButtons] = GetMouse(w); <span class="comment">% gets mouse positon</span>
+    Screen(<span class="string">'FillOval'</span>, w, [255 87 51], circle1); <span class="comment">% circle 1</span>
+    Screen(<span class="string">'FillOval'</span>, w, [98 52 18], circle2); <span class="comment">% circle 2</span>
+    Screen(<span class="string">'FillOval'</span>, w, [174 183 651], circle3); <span class="comment">% circle 3</span>
+    Screen(<span class="string">'FillOval'</span>, w, [227 28 121], circle4); <span class="comment">% circle 4</span>
+    Screen(<span class="string">'FillOval'</span>, w, [128 0 128], circle5); <span class="comment">% circle 5</span>
+    Screen(<span class="string">'Flip'</span>,w, [], 1); <span class="comment">% flips circles on to screen</span>
+
+    <span class="keyword">for</span> iCircle = 1:5
+        <span class="keyword">if</span> radius &gt;= sqrt ((mouseX - xCenter(iCircle))^2 + (mouseY-ymid)^2) <span class="comment">%if mouse is inside the circle</span>
+            Screen (<span class="string">'FrameOval'</span>, w, textColor, circleRects(iCircle, :), 5); <span class="comment">% creates white outline</span>
+            <span class="keyword">if</span> any (mouseButtons) <span class="comment">% if mouse pressed</span>
+                faveColor = iCircle; <span class="comment">% assigns condition to faveColor</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    DrawFormattedText(w, <span class="string">'Click on the color you like best.'</span>, <span class="string">'center'</span>, ymid/2, textColor); <span class="comment">%creates prompt</span>
+    Screen(<span class="string">'Flip'</span>,w,[], 1); <span class="comment">% flips prompt on to screen</span>
+<span class="keyword">end</span>
+
+Screen(<span class="string">'FillRect'</span>, w, backgroundColor) ; <span class="comment">% clear screen</span>
+WaitSecs(0.10)  <span class="comment">% wait 100 ms</span>
+DrawFormattedText(w, <span class="string">'Color selection is complete.\nThank you!'</span>, <span class="string">'center'</span>, <span class="string">'center'</span>, textColor);
+Screen(<span class="string">'Flip, w'</span>);  <span class="comment">% flips text</span>
+</pre><h2 id="3">SAVE &amp; EXIT</h2><pre class="codeinput">save(<span class="string">'psych20bhw10data'</span>, faveColor, <span class="string">'wWidth'</span>, <span class="string">'wHeight'</span>); <span class="comment">% save all objects in workspace to file</span>
+
+RestrictKeysForKbCheck([]); <span class="comment">% stop ignoring keys</span>
+keyCode = zeros(1, 256)   ; <span class="comment">% initialize vector of key-statuses</span>
+topLeftRect = [0 xmid 0 ymid];
+
+<span class="keyword">while</span> ~(( keyCode([keyNumG keyNumJ]) ) &amp;&amp; IsInRect(mouseX, mouseY, topLeftRect))
+    [~, keyCode] = KbWait(-1) ; <span class="comment">% get vector of current key-statuses</span>
+    [mouseX, mouseY, mouseButtons] = GetMouse(w);   <span class="comment">% get mouse position</span>
+<span class="keyword">end</span>
+
+sca             <span class="comment">% close Psychtoolbox window, restore mouse-cursor</span>
+ListenChar(1) ; <span class="comment">% restore keyboard output to Matlab window</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Author: Shreya Kuthiala, March 2023
+% This proram will conduct a short survey where the subject will choose the
+% color they like best.
+
+%% GENERAL SETUP
+clear all;                      %clear variables in other settings
+clc;                            %clear command window
+rng shuffle                     %seed rng using current time
+close all;                      %close figure windows
+sca;                            %close PsychToolbox windowsSkip intro/debug and start screen setup
+Screen('Preference', 'ConserveVRAM', 8192) ;
+PsychDebugWindowConfiguration
+Screen('Preference','VisualDebugLevel',1);      %suppress PsychToolbox Welcome screen
+Screen('Preference','SkipSyncTests',1);         %Skip sync testing that causes error
+PsychDefaultSetup(1);                           %Use 0-to-255 coding for colors (OK if you use 0-to-1)
+allScreenNums = Screen('Screens');              %Vector of screen numbers for available monitors
+mainScreenNum = max(allScreenNums);             %Screen number of the "main" monitor
+
+backgroundColor = [0 0 0];                      % background color is black
+w = PsychImaging('OpenWindow', mainScreenNum, backgroundColor);       %open a full-screen window
+Screen('BlendFunction',w,'GL_SRC_ALPHA','GL_ONE_MINUS_SRC_ALPHA');  %Make drawing smoother (anti-aliasing)
+
+[wWidth, wHeight] = Screen('WindowSize', w) ;   % width and height of screen in pixels
+xmid       = round(wWidth  / 2);                % horizontal midpoint of screen in pixels
+ymid       = round(wHeight / 2);                % vertical   midpoint of screen in pixels
+
+%Text setup
+Screen('TextFont',w,'Arial');                       % Set text font
+smallText = round(wHeight/30);                      % smaller text size for prompts
+Screen('TextSize',w,smallText);                     % set text size to 1/30 screen height
+textColor = [0 255 255];                            % cyan as  text color
+
+% Keyboard Setup
+KbName('UnifyKeyNames')                             % use OSX key-name system
+Screen('TextBounds',w,' ');                         % This should get rid of issues w/ aliasing in GetEchoString
+
+keyNumG = min(KbName('g'));
+keyNumJ = min(KbName('j'));
+
+ListenChar(2) ; % suppress keyboard output to Matlab window
+
+% PRIME PSYCHTOOLBOX FUNCTIONS
+WaitSecs(0);
+DrawFormattedText(w, '');
+GetMouse;
+SetMouse(0, 0);
+HideCursor
+ShowCursor;
+IsInRect(0, 0, [0 0 0 0]);
+Screen('FillOval', w);
+Screen('FrameOval', w);
+Screen('FillRect', w, backgroundColor);
+Screen('Flip', w);
+[anyKeyDown, keySecs, keyCode] = KbCheck(-1) ; % check key statuses
+
+%% COLOR SELECTION
+
+while ~KbCheck(-1) % wait for any key to be down
+    DrawFormattedText(w, 'Press any key to begin color selection', 'center', 'center', textColor)  % draw text
+    Screen('Flip', w);  % put text on screen
+end
+
+% create rects for circles using linspace
+rectWidth = linspace(0, wWidth, 33); % divides screen width into 33 equal parts
+circle1 = [0 ymid-(wWidth/16) rectWidth(5) ymid+(wWidth/16)]; %defines rect for circle 1
+circle2 = [rectWidth(8) ymid-(wWidth/16) rectWidth(12) ymid+(wWidth/16)];%defines rect for circle 2
+circle3 = [rectWidth(15) ymid-(wWidth/16) rectWidth(19) ymid+(wWidth/16)]; %defines rect for circle 3
+circle4 = [rectWidth(22) ymid-(wWidth/16) rectWidth(26) ymid+(wWidth/16)]; %defines rect for circle 4
+circle5 = [rectWidth(29) ymid-(wWidth/16) wWidth ymid+(wWidth/16)]; %defines rect for circle 5
+circleRects = [circle1 ; circle2 ; circle3 ; circle4 ; circle5]; % matrix of circle rects
+xCenter = [rectWidth(2) rectWidth(9) rectWidth(16) rectWidth(23) rectWidth(30)]; % creates matrix of center of circles
+
+mouseButtons = [0 0 0]; % initialize mouse buttons to 0
+while sum(mouseButtons) == 0 % while nothing has been clicked
+    [mouseX, mouseY, mouseButtons] = GetMouse(w); % gets mouse positon
+    Screen('FillOval', w, [255 87 51], circle1); % circle 1
+    Screen('FillOval', w, [98 52 18], circle2); % circle 2
+    Screen('FillOval', w, [174 183 651], circle3); % circle 3
+    Screen('FillOval', w, [227 28 121], circle4); % circle 4
+    Screen('FillOval', w, [128 0 128], circle5); % circle 5
+    Screen('Flip',w, [], 1); % flips circles on to screen
+
+    for iCircle = 1:5
+        if radius >= sqrt ((mouseX - xCenter(iCircle))^2 + (mouseY-ymid)^2) %if mouse is inside the circle
+            Screen ('FrameOval', w, textColor, circleRects(iCircle, :), 5); % creates white outline
+            if any (mouseButtons) % if mouse pressed
+                faveColor = iCircle; % assigns condition to faveColor
+            end
+        end
+    end
+
+    DrawFormattedText(w, 'Click on the color you like best.', 'center', ymid/2, textColor); %creates prompt
+    Screen('Flip',w,[], 1); % flips prompt on to screen
+end
+
+Screen('FillRect', w, backgroundColor) ; % clear screen
+WaitSecs(0.10)  % wait 100 ms
+DrawFormattedText(w, 'Color selection is complete.\nThank you!', 'center', 'center', textColor);
+Screen('Flip, w');  % flips text
+
+%% SAVE & EXIT
+save('psych20bhw10data', faveColor, 'wWidth', 'wHeight'); % save all objects in workspace to file
+
+RestrictKeysForKbCheck([]); % stop ignoring keys
+keyCode = zeros(1, 256)   ; % initialize vector of key-statuses
+topLeftRect = [0 xmid 0 ymid];
+
+while ~(( keyCode([keyNumG keyNumJ]) ) && IsInRect(mouseX, mouseY, topLeftRect))
+    [~, keyCode] = KbWait(-1) ; % get vector of current key-statuses
+    [mouseX, mouseY, mouseButtons] = GetMouse(w);   % get mouse position
+end
+
+sca             % close Psychtoolbox window, restore mouse-cursor
+ListenChar(1) ; % restore keyboard output to Matlab window
+
+##### SOURCE END #####
+--></body></html>
